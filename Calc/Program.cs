@@ -1,117 +1,167 @@
 ﻿using System;
-//class화 -> static 사용X 대신 new 동적할당
-// calc class에 input값 넣어서 계산처리 -> result를 main으로 보내기
 
 
 
 namespace MyApp // Note: actual namespace depends on the project name.
 {
-  
+    public enum ErroCode : int
+    {
+        None,
+        ParseNumError,
+        ParseOperError,
+        CalcDivideZero,
+    }
+
     public class Calculator
     {
-        float result;
-        public float add(float num1, float num2)
+        string calcnum = null;
+        float ret = 0;
+        ErroCode errorcode = ErroCode.None;
+
+        public ErroCode Parse(string inputStr)
+        {
+            errorcode = ErroCode.None;
+
+            //todo
+
+            return errorcode;
+        }
+
+
+        public float Add(float num1, float num2)
         {
             return num1 + num2;
         }
-        public float sub(float num1, float num2)
+        public float Sub(float num1, float num2)
         {
             return num1 - num2;
         }
-        public float mul(float num1, float num2)
+        public float Mul(float num1, float num2)
         {
             return num1 * num2;
         }
-        public float div(float num1, float num2)
+        public float Div(float num1, float num2)
         {
             return num1 / num2;
         }
 
-        public void operation(float num1, float num2, string numoperator)
+        public ErroCode Operation( float num1,  string numoperator,  float num2, out float ret)
         {
-            float ret = 0;
+            ret = 0;
 
             if (numoperator == "+")
             {
-                ret = new Calculator().add(num1, num2);
-                //ret = calc.add
+                ret = Add(num1, num2);
             }
             else if (numoperator == "-")
             {
-                ret = new Calculator().sub(num1, num2);
-                //ret = calc.sub(num1, num2);
+                ret = Sub(num1, num2);
             }
             else if (numoperator == "*")
             {
-                ret = new Calculator().mul(num1, num2);
-                //ret = calc.mul(num1, num2);
+                ret = Mul(num1, num2);
             }
             else if (numoperator == "/")
             {
                 if (num2 == 0)
                 {
-                    Console.Write("0으로 나눌 수 없습니다!");
+                    return ErroCode.CalcDivideZero;
+                    //Console.Write("Error)0으로 나눌 수 없습니다!");
                 }
                 else
                 {
-                    ret = new Calculator().div(num1, num2);
-                    //ret = calc.div(num1, num2);
+                    ret = Div(num1, num2);
                 }
             }
-            Console.WriteLine("계산결과: {0} {1} {2} = {3}", num1.ToString(), numoperator.ToString(), num2.ToString(), ret.ToString());
+
+            return ErroCode.None;
+            //Console.WriteLine("\n계산결과: {0} {1} {2} = {3}", num1.ToString(), numoperator.ToString(), num2.ToString(), ret.ToString());
         }
 
-        public static void calcOperator()
+
+        public bool RunCalc()
         {
+
+
+            float num1 = 0;
+            float num2 = 0;
+            string numoperator = null;
+
             while (true)
             {
-
-                float num1 = 0;
-                float num2 = 0;
-                string calcnum =  null;
-                char getkey = '0';
-
-                //float ret = 0;
-
-                string numoperator = null;
                 Console.Write("\n   계산기~~(Q:종료)\n\n");
-                Console.Write("\n 계산할 식을 입력해주세요.(공백으로 구분)\n");
+                Console.Write("\n 계산할 식을 입력해주세요.(공백으로 구분) ---> \t");
 
-                //종료 Q 처리
-
-                calcnum = Console.ReadLine();
-                string[] stringcheck = calcnum.Split(' ');
-
-                for (int i = 0; i < stringcheck.Length; i++)
+                NumInput(ref num1, ref numoperator, ref num2);
+                if (errorcode != 1)
                 {
-                    Console.WriteLine(stringcheck);
-
-                    //잘못된 값 입력 시 예외처리 (ex 공백만 입력했을때..)
-
-                    if (i == 0)
-                        num1 = float.Parse(stringcheck[0]);
-
-                    else if (i == 1)
-                        numoperator = stringcheck[1];
-
-                    else if (i == 2)
-                        num2 = float.Parse(stringcheck[2]);
-                    else
-                        Console.Write("잘못된 값을 입력했어요. 숫자(공백)연산자(공백)숫자 순으로 입력하세요!");
+                    Operation(num1, numoperator, num2);
                 }
-                new Calculator().operation(num1, num2, numoperator);
-                //Calculator.operation(num1, num2, numoperator);
-
             }
-
+            return false;
         }
 
+        public bool NumInput(ref float num1, ref string numoperator, ref float num2)
+        {
+            //사용자로부터 값을 string으로 입력받아 split(' ')단위로 분할하여, 각각 num1, numoperator, num2에 해당 값을 변환하여 넣는다.
+            //변수에 값을 넣기 전 에러체크를 한다.
+            //여기서 변수 할당 후, Operation메서드에 의해 계산을 실행한다.
+            calcnum = Console.ReadLine();
+            string[] stringcheck = calcnum.Split(' ');
+
+            int i = 0;
+            errorcode = 0;
+
+            //사용자로부터 Q를 입력받았을 경우 false를 전달하여 프로그램을 종료한다.
+            //종료 Q 처리
+            if (calcnum.Equals("q") == true || calcnum.Equals("Q") == true)
+            {
+                Console.WriteLine("\n계산기 프로그램을 종료합니다.");
+                //break;
+                return false;
+            }
+            else if (calcnum.Equals(" ") == true)
+            {
+                foreach (char c in calcnum)
+                {
+                    if (c < '0' || c > '9') //숫자 제외 오류처리
+                    {
+                        Console.WriteLine("Error)숫자 및 연산자만 입력하세요!!");
+                        errorcode = 1;
+
+                        return false;
+                    }
+                    i++;
+                    return true;
+                }
+            }
+            for (; i < stringcheck.Length; i++)
+            {
+                //위에서 Split(공백)단위로 자른 값들을 해당하는 변수에 넣는다. (입력 순서대로 넣기 위해 강제로 0~2번 배열을 세팅)
+                if (i == 0)
+                    num1 = float.Parse(stringcheck[0]);
+
+                else if (i == 1)
+                    numoperator = stringcheck[1];
+
+                else if (i == 2)
+                    num2 = float.Parse(stringcheck[2]);
+                else
+                    Console.Write("Error)");
+            }
+            return true;
+        }
     }
+
+    public class ErrorCheck
+
     internal class Program
     {
         static void Main(string[] args)
         {
-            Calculator.calcOperator();
+            Calculator calc = new Calculator();
+            calc.RunCalc();
         }
     }
+
 }
