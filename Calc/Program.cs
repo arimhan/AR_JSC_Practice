@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace MyApp
 {
     public enum ErrorCode : int
@@ -12,7 +11,7 @@ namespace MyApp
     }
     public class Calculator
     {
-        public float ret = 0;
+        //public float ret = 0;
         public float Add(float num1, float num2)
         {
             return num1 + num2;
@@ -33,7 +32,8 @@ namespace MyApp
         {
             ret = 0;
             _errorCode = ErrorCode.None;
-            Output op = new Output();
+            ErrorCheck er = new ErrorCheck();
+            //Output op = new Output();
             if (numoperator == "+")
             {
                 ret = Add(num1, num2);
@@ -51,7 +51,7 @@ namespace MyApp
                 if (num2 == 0)
                 {
                     _errorCode =  ErrorCode.CalcDivideZero;
-                    op.ErrorDisplay(_errorCode);
+                    er.ErrorDisplay(_errorCode);
                     return _errorCode;
                 }
                 else
@@ -69,11 +69,41 @@ namespace MyApp
         {
             errorCode = ErrorCode.Quit;
         }
+        public void ErrorDisplay(ErrorCode errorCode)
+        {
+            switch (errorCode)
+            {
+                case ErrorCode.ParseNumError:
+                    {
+                        Console.Write("\n계산기 프로그램을 종료합니다\n");
+                        break;
+                    }
+                case ErrorCode.ParseOperError:
+                    {
+                        Console.Write("\n0입력 가능한 연산자는 +, -, *, / 4가지 입니다.\n");
+                        break;
+                    }
+                case ErrorCode.CalcDivideZero:
+                    {
+                        Console.Write("\n0으로 나눌 수 없습니다.\n");
+                        break;
+                    }
+                case ErrorCode.Quit:
+                    {
+                        Console.Write("\n계산기 프로그램을 종료합니다\n");
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+            }
+        }
     }
     public class Input
     {
         ErrorCheck er = new ErrorCheck();
-        Output op = new Output();
+        //Output op = new Output();
         public void InputValue(out float num1, out string numoperator, out float num2, out ErrorCode errorCode, out bool run)
         {
             string calcnum;
@@ -84,12 +114,11 @@ namespace MyApp
             string[] stringcheck = calcnum.Split(' ');
             errorCode = ErrorCode.None;
             run = true;
-
             if ((calcnum.Equals("q") == true)|| (calcnum.Equals("Q") == true))
             {
                 errorCode = ErrorCode.Quit;
                 run = false;
-                op.ErrorDisplay(errorCode);
+                er.ErrorDisplay(errorCode);
             }
             else
             {
@@ -121,37 +150,6 @@ namespace MyApp
         {
             Calculator calc = new Calculator();
             Console.WriteLine($"\n계산결과: {num1.ToString()} {numoperator.ToString()} {num2.ToString()} = {ret.ToString()}");
-        }
-        public void ErrorDisplay(ErrorCode errorCode)
-        {
- 
-            switch (errorCode)
-            {
-                case ErrorCode.ParseNumError:
-                    {
-                        Console.Write("\n계산기 프로그램을 종료합니다\n");
-                        break;
-                    }
-                case ErrorCode.ParseOperError:
-                    {
-                        Console.Write("\n0입력 가능한 연산자는 +, -, *, / 4가지 입니다.\n");
-                        break;
-                    }
-                case ErrorCode.CalcDivideZero:
-                    {
-                        Console.Write("\n0으로 나눌 수 없습니다.\n");
-                        break;
-                    }
-                case ErrorCode.Quit:
-                    {
-                        Console.Write("\n계산기 프로그램을 종료합니다\n");
-                        break;
-                    }
-                default:
-                    {
-                        break;
-                    }
-            }
         }
     }
     internal class Program
