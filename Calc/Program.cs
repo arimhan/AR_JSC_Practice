@@ -18,9 +18,7 @@ namespace MyApp // Note: actual namespace depends on the project name.
     {
 
         public float ret = 0;
-        public ErrorCode errorcode = ErrorCode.None;
-
-        ErrorCheck errorchk = new ErrorCheck();
+        public bool run = true;
 
         public float Add(float num1, float num2)
         {
@@ -39,8 +37,9 @@ namespace MyApp // Note: actual namespace depends on the project name.
             return num1 / num2;
         }
 
-        public ErrorCode Operation(float num1, string numoperator, float num2, out float ret)
+        public ErrorCode Operation( float num1,  string numoperator,  float num2, out float ret)
         {
+
             ret = 0;
 
             if (numoperator == "+")
@@ -59,227 +58,167 @@ namespace MyApp // Note: actual namespace depends on the project name.
             {
                 if (num2 == 0)
                 {
+                    ErrorCheck er = new ErrorCheck();
+                    er.errorcode = ErrorCode.CalcDivideZero;
+                    er.ErrorDisplay(er.errorcode);
+
                     return ErrorCode.CalcDivideZero;
-                    //Console.Write("Error)0으로 나눌 수 없습니다!");
                 }
                 else
                 {
                     ret = Div(num1, num2);
                 }
             }
-            //Console.WriteLine("\n계산결과: {0} {1} {2} = {3}", num1.ToString(), numoperator.ToString(), num2.ToString(), ret.ToString());
             return ErrorCode.None;
 
         }
 
         public bool RunCalc()
         {
-
-            float num1 = 0;
-            float num2 = 0;
-            string numoperator = null;
-
-            while (true)
+            //bool run = true;
+            while (run == true)
             {
+                
+                Calculator calc = new Calculator();
+                Input input = new Input(); 
+                Output output = new Output();
+                ErrorCheck er = new ErrorCheck();
+
                 Console.Write("\n   계산기~~(Q:종료)\n\n");
                 Console.Write("\n 계산할 식을 입력해주세요.(공백으로 구분) ---> \t");
 
-                Input input = new Input();
-                input.InputDisplay(ref num1, ref numoperator, ref num2);
-                Output output = new Output();
-                output.OutputDisplay(num1, numoperator, num2, ret);
+                input.InputDisplay(out float num1, out string numoperator, out float num2, out string calcnum, out ErrorCode _errorcode);
 
+                er.errorcode = _errorcode;
+                if(er.errorcode == ErrorCode.Quit)
+                {
+                    run = false;
+                    return false;
+                }
+
+                if(er.errorcode == ErrorCode.None)
+                {
+                    calc.Operation(num1, numoperator, num2, out ret);
+                    output.OutputDisplay(num1, numoperator, num2, ret);
+
+                    //return true;
+                }
+                //return true;
             }
-            return false;
+            return true;
         }
-
-
     }
+
+
 
     public class ErrorCheck
     {
-        //public ErrorCode CheckOperation(float num1, string numoperator, float num2, out float ret)
-        //{
-        //    ret = 0;
+        public ErrorCode errorcode = ErrorCode.None;
 
-        //    if (numoperator == "+")
-        //    {
-        //        ret = Add(num1, num2);
-        //    }
-        //    else if (numoperator == "-")
-        //    {
-        //        ret = Sub(num1, num2);
-        //    }
-        //    else if (numoperator == "*")
-        //    {
-        //        ret = Mul(num1, num2);
-        //    }
-        //    else if (numoperator == "/")
-        //    {
-        //        if (num2 == 0)
-        //        {
-        //            return ErroCode.CalcDivideZero;
-        //            //Console.Write("Error)0으로 나눌 수 없습니다!");
-        //        }
-        //        else
-        //        {
-        //            ret = Div(num1, num2);
-        //        }
-        //    }
-
-        //    return ErroCode.None;
-        //    //Console.WriteLine("\n계산결과: {0} {1} {2} = {3}", num1.ToString(), numoperator.ToString(), num2.ToString(), ret.ToString());
-        //}
-
-        public void ErrorDisplay()
+        public bool InputErrorCheck(string clacnum, string[] stringcheck, float num1, string numoperator, float num2, out ErrorCode errorcode)
         {
-            Calculator calc = new Calculator();
-            if (calc.errorcode == ErrorCode.CalcDivideZero)
+            errorcode = ErrorCode.None;
+            if ((clacnum.Equals("q") == true))
+            {
+                errorcode = ErrorCode.Quit;
+                ErrorDisplay(errorcode);
+                return false;
+            }
+            return true;
+        }
+
+        public bool ErrorDisplay(ErrorCode errorcode)
+        {
+
+            if (errorcode == ErrorCode.CalcDivideZero)
             {
                 Console.Write("Error)0으로 나눌 수 없습니다!");
-            }
-            else if (calc.errorcode == ErrorCode.None)
-            {
-                Console.Write("");
-            }
-            else if (calc.errorcode == ErrorCode.None)
-            {
-                Console.Write("");
-            }
-            else { }
 
+                return true;
+                //return false;
+            }
+            else if (errorcode == ErrorCode.Quit)
+            {
+
+                Console.Write("\n계산기 프로그램을 종료합니다");
+                return false;
+            }
+            else if (errorcode == ErrorCode.CalcDivideZero)
+            {
+                Console.Write("");
+            }
+            return true;
         }
     }
     public class Input
     {
-        public ErrorCode Parse(string inputStr)
-        {
-            if (inputStr.Equals("ParseNumError") == true)
-            {
-                Console.Write("ParseNumError");
-                return ErrorCode.ParseNumError;
-            }
-            else if (inputStr.Equals("Quit") == true)
-            {
-                Console.Write("Quit");
-                return ErrorCode.Quit;
-            }
-            //errorcode = ErrorCode.None;
-            //todo
-            return ErrorCode.None;
-        }
+        //public ErrorCode Parse(string inputStr)
+        //{
+        //    if (inputStr.Equals("ParseNumError") == true)
+        //    {
+        //        Console.Write("ParseNumError");
+        //        return ErrorCode.ParseNumError;
+        //    }
+        //    else if (inputStr.Equals("Quit") == true)
+        //    {
+        //        Console.Write("Quit");
+        //        return ErrorCode.Quit;
+        //    }
+        //    //errorcode = ErrorCode.None;
+        //    //todo
+        //    return ErrorCode.None;
+        //}
 
         public string calcnum = null;
 
-        public void InputDisplay(ref float num1, ref string numoperator, ref float num2)
+        public bool InputDisplay(out float num1, out string numoperator, out float num2, out string calcnum, out ErrorCode errorcode)
         {
+            Calculator calc = new Calculator();
 
+            ErrorCheck er = new ErrorCheck();
             calcnum = Console.ReadLine();
+
+            num1 = 0;
+            num2 = 0;
+            numoperator = null;
             string[] stringcheck = calcnum.Split(' ');
 
-            int i = 0;
+            er.InputErrorCheck(calcnum, stringcheck, num1, numoperator, num2, out ErrorCode _errorCode);
 
-            if (calcnum.Equals("q") == true || calcnum.Equals("Q") == true)
-            {
-                string errorstring = (ErrorCode.Quit).ToString();
-                Parse(errorstring);
-                //return ErrorCode.Quit;
-                //Console.WriteLine("\n계산기 프로그램을 종료합니다.");
+            errorcode = _errorCode;
 
-            }
-            else if (calcnum.Equals(" ") == true)
+            if (errorcode == ErrorCode.None)
             {
-                foreach (char c in calcnum)
+
+                int i = 0;
+
+                for (; i < stringcheck.Length; i++)
                 {
-                    if (c < '0' || c > '9')
+                    if (i == 0)
+                        num1 = float.Parse(stringcheck[0]);
+
+                    else if (i == 1)
+                        numoperator = stringcheck[1];
+
+                    else if (i == 2)
+                        num2 = float.Parse(stringcheck[2]);
+                    else
                     {
-                        //Console.WriteLine("Error)숫자 및 연산자만 입력하세요!!");
-                        //return ErrorCode.ParseNumError;
+                        return false;
                     }
-                    i++;
-                    //return ErrorCode.None;
                 }
             }
-            for (; i < stringcheck.Length; i++)
-            {
-
-                if (i == 0)
-                    num1 = float.Parse(stringcheck[0]);
-
-                else if (i == 1)
-                    numoperator = stringcheck[1];
-
-                else if (i == 2)
-                    num2 = float.Parse(stringcheck[2]);
-                else
-                    Console.Write("Error)");
-            }
-            //if (errorcode == ErrorCode.None)
-            //{
-            //    Operation(num1, numoperator, num2, out ret);
-            //}
-            //Operation(num1, numoperator, num2, out ret);
-            //return ErrorCode.None;
+            return true;
         }
     }
     public class Output
     {
+
         public void OutputDisplay(float num1, string numoperator, float num2, float ret)
         {
-            Console.WriteLine("\n계산결과: {0} {1} {2} = {3}", num1.ToString(), numoperator.ToString(), num2.ToString(), ret.ToString());
+            Calculator calc = new Calculator();
+            Console.WriteLine($"\n계산결과: {num1.ToString()} {numoperator.ToString()} {num2.ToString()} = {ret.ToString()}");
         }
-
-        //public ErrorCode NumInput(float num1, string numoperator, float num2)
-        //{
-
-        //    calcnum = Console.ReadLine();
-        //    string[] stringcheck = calcnum.Split(' ');
-
-        //    int i = 0;
-        //    errorcode = 0;
-        //    string errorstring = (ErrorCode.ParseNumError).ToString();
-        //    Parse(errorstring);
-
-        //    if (calcnum.Equals("q") == true || calcnum.Equals("Q") == true)
-        //    {
-        //        return ErrorCode.Quit;
-        //        //Console.WriteLine("\n계산기 프로그램을 종료합니다.");
-
-        //    }
-        //    else if (calcnum.Equals(" ") == true)
-        //    {
-        //        foreach (char c in calcnum)
-        //        {
-        //            if (c < '0' || c > '9')
-        //            {
-        //                //Console.WriteLine("Error)숫자 및 연산자만 입력하세요!!");
-        //                return ErrorCode.ParseNumError;
-        //            }
-        //            i++;
-        //            return ErrorCode.None;
-        //        }
-        //    }
-        //    for (; i < stringcheck.Length; i++)
-        //    {
-
-        //        if (i == 0)
-        //            num1 = float.Parse(stringcheck[0]);
-
-        //        else if (i == 1)
-        //            numoperator = stringcheck[1];
-
-        //        else if (i == 2)
-        //            num2 = float.Parse(stringcheck[2]);
-        //        else
-        //            Console.Write("Error)");
-        //    }
-        //    if (errorcode == ErrorCode.None)
-        //    {
-        //        Operation(num1, numoperator, num2, out ret);
-        //    }
-        //    //Operation(num1, numoperator, num2, out ret);
-        //    return ErrorCode.None;
-        //}
     }
 
 
@@ -291,5 +230,4 @@ namespace MyApp // Note: actual namespace depends on the project name.
             calc.RunCalc();
         }
     }
-
 }
