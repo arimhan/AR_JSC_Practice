@@ -18,29 +18,30 @@ namespace NumBaseballGame
         public int[] BaseNum = new int[9] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         public int[] SelectNum = new int[3];
         public int retStrike = 0;
-        public int retOut = 0;
+        public int retOut = 0;      //스트라이크나 볼이 없으면 아웃이니까 그렇게 처리하기
         public NumCheck nc;
+        Random RBaseNum = new Random();
+        int RBValue;
 
-        public void Run()
-        {
-            Init();
-            bool bRun = true;
-            while (bRun)
-            {
-                PlayerInput input = new PlayerInput();
-                input.InputNum(SelectNum, ref retStrike, ref retOut);
-                GameOutput display = new GameOutput();
-                display.ResultDisplay(ref retStrike, ref retOut, ref nc);
-                if (nc == (NumCheck.E_CLEAR))
-                {
-                    bRun = false;
-                }
-            }
-        }
+        //public void Run()
+        //{
+        //    Init();
+        //    bool bRun = true;
+        //    while (bRun)
+        //    {
+        //        PlayerInput input = new PlayerInput();
+        //        input.InputNum(SelectNum, ref retStrike, ref retOut);
+        //        GameOutput display = new GameOutput();
+        //        display.ResultDisplay(retStrike, retOut, nc);           //메서드 안에서 수정할 게 없으면 ref(참조) 필요없음!
+        //        if (nc == (NumCheck.E_CLEAR))
+        //        {
+        //            bRun = false;
+        //        }
+        //    }
+        //}
         public void Init()
         {
-            Random RBaseNum = new Random();
-            int RBValue;
+
             for (int i = 0; i < SelectNum.Length; i++)
             {
                 RBValue = RBaseNum.Next(0, 10); //1~9 사이의 랜덤 값을 생성합니다
@@ -71,6 +72,7 @@ namespace NumBaseballGame
             retOut = 0;
             for (int i = 0; i < InputNum.Length; i++)
             {
+                //check메서드를 만들어서 분리하는걸 추천 or InputNum 메서드 명을 변경하거나..
                 if (InputNum[i] != SelectNum[i])   //숫자,위치 -> 1쌍씩 체크
                 {
                     //수정 : 나중에 내 숫자만 출력되도록 처리할것. (디버깅용)
@@ -94,7 +96,7 @@ namespace NumBaseballGame
     }
     public class GameOutput
     {
-        public void ResultDisplay(ref int retStrike, ref int retOut, ref NumCheck nc)
+        public void ResultDisplay(int retStrike, int retOut, NumCheck nc)
         {
             if (retStrike == 3)
             {
@@ -116,7 +118,20 @@ namespace NumBaseballGame
         static void Main(string[] args)
         {
             BaseballGame bg = new BaseballGame();
-            bg.Run();
+            //bg.Run();
+            bg.Init();
+            bool bRun = true;
+            while (bRun)
+            {
+                PlayerInput input = new PlayerInput();
+                input.InputNum(bg.SelectNum, ref bg.retStrike, ref bg.retOut);
+                GameOutput display = new GameOutput();
+                display.ResultDisplay(bg.retStrike, bg.retOut, bg.nc);           //메서드 안에서 수정할 게 없으면 ref(참조) 필요없음!
+                if (bg.nc == NumCheck.E_CLEAR)
+                {
+                    bRun = false;
+                }
+            }
         }
     }
 }
