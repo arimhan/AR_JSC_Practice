@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calc_2", "Calc_2\Calc_2.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "솔루션 항목", "솔루션 항목", "{BB5E33B1-0CD3-4402-873B-B700E21DF57B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumBaseballGame", "..\NumBaseballGame\NumBaseballGame\NumBaseballGame.csproj", "{01E027C1-C128-457A-B53C-14E1F9E2B340}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumBaseballGame", "NumBaseGame\NumBaseballGame.csproj", "{2889754A-A9EF-4DD6-BAD2-949C3AE4C726}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +25,10 @@ Global
 		{13C0CAF8-3FDD-4A28-930C-3546CD3ECB56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13C0CAF8-3FDD-4A28-930C-3546CD3ECB56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13C0CAF8-3FDD-4A28-930C-3546CD3ECB56}.Release|Any CPU.Build.0 = Release|Any CPU
-		{01E027C1-C128-457A-B53C-14E1F9E2B340}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{01E027C1-C128-457A-B53C-14E1F9E2B340}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{01E027C1-C128-457A-B53C-14E1F9E2B340}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{01E027C1-C128-457A-B53C-14E1F9E2B340}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2889754A-A9EF-4DD6-BAD2-949C3AE4C726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2889754A-A9EF-4DD6-BAD2-949C3AE4C726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2889754A-A9EF-4DD6-BAD2-949C3AE4C726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2889754A-A9EF-4DD6-BAD2-949C3AE4C726}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -34,7 +34,6 @@ namespace MyApp
             ret = 0;
             outretcode = ResultCode.E_SUCCESS;
             ErrorCheck er = new ErrorCheck();
-            //Output op = new Output();
             if (numoperator == "+")
             {
                 ret = Add(num1, num2);
@@ -171,11 +170,11 @@ namespace MyApp
                 Input input = new Input();
                 ErrorCheck er = new ErrorCheck();
                 input.InputValue(out float num1, out string numoperator, out float num2, out ResultCode outretcode, out run);
-                if (outretcode != ResultCode.E_QUIT)//if (!((outretcode == ResultCode.E_QUIT) == true))
+                if (outretcode != ResultCode.E_QUIT)
                 {
                     Calculator calc = new Calculator();
                     calc.Operation(num1, numoperator, num2, out float ret, out ResultCode outretcode2);
-                    if (outretcode2 != ResultCode.E_FAIL_CALC_DIVIDEZERO)//if (!((outretcode2 == ResultCode.E_FAIL_CALC_DIVIDEZERO) == true))
+                    if (outretcode2 != ResultCode.E_FAIL_CALC_DIVIDEZERO)
                     {
                         Output output = new Output();
                         output.OutputDisplay(num1, numoperator, num2, ret);
