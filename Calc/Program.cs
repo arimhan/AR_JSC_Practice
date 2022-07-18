@@ -12,24 +12,25 @@ namespace MyApp
     }
     public class Calculator
     {
-        //public float ret = 0;
-        public float Add(float num1, float num2)
+        //public int ret = 0;
+        public int Add(int num1, int num2)
         {
             return num1 + num2;
         }
-        public float Sub(float num1, float num2)
+        public int Sub(int num1, int num2)
         {
             return num1 - num2;
         }
-        public float Mul(float num1, float num2)
+        public int Mul(int num1, int num2)
         {
             return num1 * num2;
         }
-        public float Div(float num1, float num2)
+        public void Div(int num1, int num2, out int quotient, out float remainder)
         {
-            return num1 / num2;
+            quotient = num1 / num2;
+            remainder = num2 % num2;
         }
-        public ResultCode Operation(float num1, string numoperator, float num2, out float ret, out ResultCode outretcode)
+        public ResultCode Operation(int num1, string numoperator, int num2, out int ret, out ResultCode outretcode)
         {
             ret = 0;
             outretcode = ResultCode.E_SUCCESS;
@@ -56,7 +57,7 @@ namespace MyApp
                 }
                 else
                 {
-                    ret = Div(num1, num2);
+                    ret = Div(num1, num2, out int q, out float r);
                 }
             }
             return ResultCode.E_SUCCESS;
@@ -108,7 +109,7 @@ namespace MyApp
     {
         ErrorCheck er = new ErrorCheck();
         //Output op = new Output();
-        public void InputValue(out float num1, out string numoperator, out float num2, out ResultCode outretcode, out bool run)
+        public void InputValue(out int num1, out string numoperator, out int num2, out ResultCode outretcode, out bool run)
         {
             string calcnum;
             calcnum = Console.ReadLine();
@@ -132,7 +133,7 @@ namespace MyApp
                 {
                     if (i == 0)
                     {
-                        num1 = float.Parse(stringcheck[0]);
+                        num1 = int.Parse(stringcheck[0]);
                     }
                     else if (i == 1)
                     {
@@ -140,7 +141,7 @@ namespace MyApp
                     }
                     else if (i == 2)
                     {
-                        num2 = float.Parse(stringcheck[2]);
+                        num2 = int.Parse(stringcheck[2]);
                     }
                     else
                     {
@@ -152,7 +153,7 @@ namespace MyApp
     }
     public class Output
     {
-        public void OutputDisplay(float num1, string numoperator, float num2, float ret)
+        public void OutputDisplay(int num1, string numoperator, int num2, int ret)
         {
             Calculator calc = new Calculator();
             Console.WriteLine($"\n계산결과: {num1.ToString()} {numoperator.ToString()} {num2.ToString()} = {ret.ToString()}");
@@ -169,11 +170,11 @@ namespace MyApp
                 Console.Write("\n 계산할 식을 입력해주세요.(공백으로 구분) ---> \t");
                 Input input = new Input();
                 ErrorCheck er = new ErrorCheck();
-                input.InputValue(out float num1, out string numoperator, out float num2, out ResultCode outretcode, out run);
+                input.InputValue(out int num1, out string numoperator, out int num2, out ResultCode outretcode, out run);
                 if (outretcode != ResultCode.E_QUIT)
                 {
                     Calculator calc = new Calculator();
-                    calc.Operation(num1, numoperator, num2, out float ret, out ResultCode outretcode2);
+                    calc.Operation(num1, numoperator, num2, out int ret, out ResultCode outretcode2);
                     if (outretcode2 != ResultCode.E_FAIL_CALC_DIVIDEZERO)
                     {
                         Output output = new Output();
