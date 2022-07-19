@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace _07.Constructor
+namespace _07._02.Constructor
 {
     class Cat
     {
