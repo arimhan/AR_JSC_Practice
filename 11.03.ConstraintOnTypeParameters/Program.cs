@@ -28,9 +28,9 @@ namespace _11._03.ConstraintOnTypeParameters        //418p
     }
     internal class Program
     {
-        public static T CreateInstance<T>() where T :new()
+        public static T CreateInstance<T>() where T :new()    // T는 반드시 매개변수가 없는 생성자여야 한다.
         {
-            return new T();
+            return new T();   //매개변수 없는 생성자를 리턴한다. (기본생성자가 없는 클래스를 형식 매개변수로 넘기면 컴파일 에러 발생)
         }
         static void Main(string[] args)
         {
