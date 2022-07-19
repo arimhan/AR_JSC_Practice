@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>_07.DeepCopy</RootNamespace>
+    <RootNamespace>_11._04.UsingGenericList</RootNamespace>
   </PropertyGroup>
 
 </Project>

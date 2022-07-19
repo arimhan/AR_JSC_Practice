@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>_07._7.AccessModifier</RootNamespace>
+    <RootNamespace>_11._08.EnumerableGeneric</RootNamespace>
   </PropertyGroup>
 
 </Project>

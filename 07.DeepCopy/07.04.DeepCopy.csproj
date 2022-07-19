@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>_07.BasicClass</RootNamespace>
+    <RootNamespace>_07._04.DeepCopy</RootNamespace>
   </PropertyGroup>
 
 </Project>

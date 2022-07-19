@@ -8,13 +8,13 @@ namespace _11._03.ConstraintOnTypeParameters        //418p
         public StructArray(int size)
         { Array = new T[size]; }
     }
-    class RefArray<T> where T: class
+    class RefArray<T> where T: class //struct
     {
         public T[] Array { get; set; }
         public RefArray(int size)
         { Array = new T[size];  }
     }
-    class Base { }
+    class Base   { }
     class Derived :Base { }
     class BaseArray<U> where U : Base
     {
@@ -39,6 +39,10 @@ namespace _11._03.ConstraintOnTypeParameters        //418p
             a.Array[1] = 1;
             a.Array[2] = 2;
 
+            //RefArray<double> b = new RefArray<double>(3);
+            //b.Array[0] = 0;
+            //b.Array[1] = 2;
+            //b.Array[2] = 5;
             RefArray<StructArray<double>> b = new RefArray<StructArray<double>>(3);
             b.Array[0] = new StructArray<double>(5);
             b.Array[1] = new StructArray<double>(10);
