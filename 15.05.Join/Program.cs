@@ -22,7 +22,7 @@ namespace _15._05.Join
         static void Main(string[] args)
         {
             Profile[] arrProfile =
-{
+            {
                 new Profile(){Name = "정우성", Height = 186},
                 new Profile(){Name = "김태희", Height = 158},
                 new Profile(){Name = "고현정", Height = 172},
@@ -30,7 +30,7 @@ namespace _15._05.Join
                 new Profile(){Name = "하하",   Height = 171},
             };
             Product[] arrProduct =
-{      
+            {      
                 new Product(){Title = "비트",       Star = "정우성"},
                 new Product(){Title = "CF다수",     Star = "김태희"},
                 new Product(){Title = "아이리스",   Star = "김태희"},
