@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.IO;
+using static System.Console;
 
 namespace _18._03.BasicIO
 {
@@ -6,7 +9,7 @@ namespace _18._03.BasicIO
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            WriteLine("Hello World!");
         }
     }
 }
