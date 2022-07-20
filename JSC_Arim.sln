@@ -244,6 +244,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "16.05.CallerInfo", "16.05.C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "16.06.HistoryAttribute", "16.06.HistoryAttribute\16.06.HistoryAttribute.csproj", "{F29F5697-3FAB-4EB7-8745-F99E0F6C6C30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "17.01.DuckTyping", "17.01.DuckTyping\17.01.DuckTyping.csproj", "{29B5870E-BA20-4F9E-92D9-41EC57DAFBFF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -646,6 +648,10 @@ Global
 		{F29F5697-3FAB-4EB7-8745-F99E0F6C6C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F29F5697-3FAB-4EB7-8745-F99E0F6C6C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F29F5697-3FAB-4EB7-8745-F99E0F6C6C30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29B5870E-BA20-4F9E-92D9-41EC57DAFBFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29B5870E-BA20-4F9E-92D9-41EC57DAFBFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29B5870E-BA20-4F9E-92D9-41EC57DAFBFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29B5870E-BA20-4F9E-92D9-41EC57DAFBFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -769,6 +775,7 @@ Global
 		{E79B406F-3FDF-4EF6-9DC4-73E66898EF68} = {7389F0BB-AA87-408B-9198-1A6F58FAAA96}
 		{01919C59-3FA1-4B69-AC5E-B37BE1D9BA97} = {7389F0BB-AA87-408B-9198-1A6F58FAAA96}
 		{F29F5697-3FAB-4EB7-8745-F99E0F6C6C30} = {7389F0BB-AA87-408B-9198-1A6F58FAAA96}
+		{29B5870E-BA20-4F9E-92D9-41EC57DAFBFF} = {D2AC8AFC-EA44-4FA5-891F-27E8CC4299AA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5AAA1E14-2D19-448A-816C-FF72E5709AB6}
