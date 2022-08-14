@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.2.32516.85
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32602.291
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Calc", "Calc\Calc.csproj", "{64DA8D00-A399-4BB5-91EA-A91BFB736EA8}"
 EndProject
@@ -267,9 +267,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "19.01.BasicThread", "19.01.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "19.02.Synchronize", "19.02.Synchronize\19.02.Synchronize.csproj", "{5A02D9E8-AFC5-4F09-99EC-D473E9BF5252}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "19.03.TaskResult", "19.03.TaskResult\19.03.TaskResult.csproj", "{B1301F84-FF82-4D78-9875-829DFD792E16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "19.03.TaskResult", "19.03.TaskResult\19.03.TaskResult.csproj", "{B1301F84-FF82-4D78-9875-829DFD792E16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "19.04.Async", "19.04.Async\19.04.Async.csproj", "{BA84AB59-0795-4A5B-8440-9711FB8ACD20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "19.04.Async", "19.04.Async\19.04.Async.csproj", "{BA84AB59-0795-4A5B-8440-9711FB8ACD20}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Unity", "Unity", "{A39A7E74-CB1E-4AD2-AFFA-28D8AAAB0444}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegateDemo", "DelegateDemo\DelegateDemo.csproj", "{132AF239-21EE-42F4-9B41-91BB7EF8835C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -733,6 +737,10 @@ Global
 		{BA84AB59-0795-4A5B-8440-9711FB8ACD20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA84AB59-0795-4A5B-8440-9711FB8ACD20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA84AB59-0795-4A5B-8440-9711FB8ACD20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{132AF239-21EE-42F4-9B41-91BB7EF8835C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{132AF239-21EE-42F4-9B41-91BB7EF8835C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{132AF239-21EE-42F4-9B41-91BB7EF8835C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{132AF239-21EE-42F4-9B41-91BB7EF8835C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -871,6 +879,8 @@ Global
 		{5A02D9E8-AFC5-4F09-99EC-D473E9BF5252} = {18CF1AB0-6049-4D0A-AE4D-650FC00C645F}
 		{B1301F84-FF82-4D78-9875-829DFD792E16} = {18CF1AB0-6049-4D0A-AE4D-650FC00C645F}
 		{BA84AB59-0795-4A5B-8440-9711FB8ACD20} = {18CF1AB0-6049-4D0A-AE4D-650FC00C645F}
+		{A39A7E74-CB1E-4AD2-AFFA-28D8AAAB0444} = {B9D66C43-F772-490F-BE00-4E7C4B3DE63F}
+		{132AF239-21EE-42F4-9B41-91BB7EF8835C} = {A39A7E74-CB1E-4AD2-AFFA-28D8AAAB0444}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5AAA1E14-2D19-448A-816C-FF72E5709AB6}
